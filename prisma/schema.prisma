@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Appointment {
+  id          String   @id @default(cuid())
+  serviceId   String
+  serviceName String
+  price       Int
+  duration    String
+  date        String
+  time        String
+  clientName  String
+  clientPhone String
+  clientEmail String   @default("")
+  notes       String   @default("")
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
+
+  @@map("appointments")
+}
